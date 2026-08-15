@@ -1010,9 +1010,9 @@ body { background:#fff; }
 .path-arrow { position:absolute; bottom:20px; right:21px; color:#87929a; }
 .home-explore { padding:18px 0 75px; }
 .explore-grid { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:12px; }
-.explore-grid a { min-height:86px; border:1px solid var(--line); border-radius:10px; padding:15px 17px; text-decoration:none; display:grid; grid-template-columns:34px 1fr; column-gap:11px; align-content:center; transition:.18s ease; }
+.explore-grid a { min-height:0; border:1px solid var(--line); border-radius:10px; padding:12px 16px; text-decoration:none; display:grid; grid-template-columns:30px 1fr; column-gap:10px; align-content:center; transition:.18s ease; }
 .explore-grid a:hover { transform:translateY(-2px); border-color:#b9d2c4; background:#fbfdfc; }
-.explore-grid > a > span { grid-row:1/3; width:34px; height:34px; display:grid; place-items:center; color:#078346; }
+.explore-grid > a > span { grid-row:1/3; width:30px; height:30px; display:grid; place-items:center; color:#078346; }
 .explore-grid svg { width:22px; height:22px; fill:none; stroke:currentColor; stroke-width:1.7; }
 .explore-grid strong { display:flex; gap:5px; align-items:center; font-size:14px; }
 .explore-grid strong svg { width:12px; height:12px; }
