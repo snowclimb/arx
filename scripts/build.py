@@ -101,22 +101,15 @@ def base_for(rel_path):
 def page_header(base, active=''):
     def n(url): return base + url
     active_home=' active' if active=='home' else ''
-    active_browse=' active' if active=='browse' else ''
+    active_justice=' active' if active=='justice' else ''
     return f'''<header class="site-header"><div class="site-header-inner">
 <a class="brand" href="{n('index.html')}"><span class="brand-ribbon"><img src="{n('assets/images/arx-flag.webp')}" alt="Flag of Arx"></span><span class="brand-text"><strong>ARX STATE</strong><span>OFFICIAL ARCHIVES</span></span></a>
 <button class="mobile-toggle" aria-label="Toggle navigation" data-mobile-toggle>☰</button>
 <nav class="main-nav" aria-label="Primary navigation">
 <a class="nav-link{active_home}" href="{n('index.html')}">⌂&nbsp; HOME</a>
-<div class="nav-drop"><button class="nav-drop-button{active_browse}">BROWSE</button><div class="nav-drop-menu">
-<a href="{n('justice/index.html')}">The Arxian Justice Archive</a>
-<a href="{n('justice/constitution/index.html')}">Constitution</a><a href="{n('justice/laws/index.html')}">Laws</a><a href="{n('justice/policies/index.html')}">Policies &amp; Procedures</a><a href="{n('justice/rulings/index.html')}">Justice Rulings</a><a href="{n('justice/treaties/index.html')}">Treaties &amp; Agreements</a><a href="{n('justice/archive/index.html')}">Archive</a>
-</div></div>
-<a class="nav-link" href="{n('collections/index.html')}">COLLECTIONS</a>
-<a class="nav-link" href="{n('about/index.html')}">ABOUT</a>
-<a class="nav-link" href="{n('help/index.html')}">HELP</a>
-<a class="nav-link" href="{n('contact/index.html')}">CONTACT</a>
+<a class="nav-link{active_justice}" href="{n('justice/index.html')}">JUSTICE ARCHIVE</a>
 </nav>
-<div class="header-search"><div class="search-shell"><input data-global-search type="search" placeholder="Search the Archive…" aria-label="Search the Archive"><button aria-label="Search">⌕</button></div><div class="search-results" data-search-results></div></div>
+<div class="header-search"><div class="search-shell"><input data-global-search type="search" placeholder="Search the Archive…" aria-label="Search the Archive"><button type="button" aria-label="Search" data-search-submit>⌕</button></div><div class="search-results" data-search-results></div></div>
 </div></header>'''
 
 def page_footer(base):
@@ -124,7 +117,7 @@ def page_footer(base):
 
 def shell(title, rel_path, content, active=''):
     base=base_for(rel_path)
-    return f'''<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="description" content="Official archive of the Technocratic State of Arx"><title>{esc(title)} | Arx</title><link rel="icon" href="{base}assets/images/arx-flag.webp"><link rel="stylesheet" href="{base}assets/css/site.css"><style>:root{{--crest-url:url('{base}assets/images/arx-state-crest.png')}}</style></head><body data-base="{base}">{page_header(base,active)}<main class="site-main">{content}</main>{page_footer(base)}<script src="{base}assets/js/site.js"></script></body></html>'''
+    return f'''<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="description" content="Official archive of the Technocratic State of Arx"><title>{esc(title)} | Arx</title><link rel="icon" href="{base}assets/images/arx-flag.webp"><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=EB+Garamond:wght@500;600;700&family=Roboto:wght@300;400;500;600;700&display=swap" rel="stylesheet"><link rel="stylesheet" href="{base}assets/css/site.css"><style>:root{{--crest-url:url('{base}assets/images/arx-state-crest.webp')}}</style></head><body data-base="{base}">{page_header(base,active)}<main class="site-main">{content}</main>{page_footer(base)}<script src="{base}assets/js/site.js" defer></script></body></html>'''
 
 def breadcrumb(base, parts):
     chunks=[]
@@ -140,7 +133,7 @@ def cover(d, mini=False):
     return f'''<div class="{cls}"><div class="doc-cover"><img src="PLACEHOLDER_JUSTICE" alt=""><div class="cover-id">{esc(d['id'])}</div><div class="cover-title">{esc(d.get('short_title') or d['title'])}</div></div></div>'''
 
 def replace_asset_placeholders(s, base):
-    return s.replace('PLACEHOLDER_JUSTICE', base+'assets/images/justice-shield.png')
+    return s.replace('PLACEHOLDER_JUSTICE', base+'assets/images/justice-shield-cover.png')
 
 def write(rel_path, title, content, active=''):
     path=SITE/rel_path
@@ -230,13 +223,30 @@ def document_page(d, docs):
         r=ids.get(rid)
         if r: related.append(f'<a class="side-link" href="../{r["id"].lower()}/index.html"><span><strong>{esc(r["id"])}</strong>&nbsp;&nbsp;{esc(r.get("short_title") or r["title"])}</span><span>→</span></a>')
     side=f'''<aside class="viewer-side"><div class="side-card"><h3>Version History</h3>{''.join(version_rows)}</div><div class="side-card"><h3>About This Document</h3><p>{esc(d.get('summary') or 'No description has been added.')}</p></div>{f'<div class="side-card"><h3>Related Documents</h3>{"".join(related)}</div>' if related else ''}</aside>'''
-    viewer = f'<iframe src="{pdf}#view=FitH" title="{esc(d["title"])} PDF viewer"></iframe>' if pdf else '<div class="empty-state"><strong>No PDF attached.</strong>Add a PDF filename in this document’s meta.json file.</div>'
+    viewer = f'<iframe loading="lazy" src="{pdf}#view=FitH" title="{esc(d["title"])} PDF viewer"></iframe>' if pdf else '<div class="empty-state"><strong>No PDF attached.</strong>Add a PDF filename in this document’s meta.json file.</div>'
     return f'''<div class="container document-page">{crumbs}<section class="document-head">{cover(d,True)}<div class="document-info"><h1>{esc(d['id'])}</h1><p class="full-title">{esc(d['title'])}</p><span class="current-badge">{esc((d.get('status') or 'Record').upper())}</span><div class="meta-strip">{''.join(metas)}</div></div></section><div class="viewer-actions">{''.join(actions)}</div><section class="viewer-grid"><div class="pdf-frame">{viewer}</div>{side}</section></div>'''
 
 def recent_page(docs):
     recent=sorted(docs,key=lambda d:d.get('last_updated') or d.get('archive_added') or '',reverse=True)
     items=''.join(f'<a class="side-link" href="../documents/{d["id"].lower()}/index.html"><span><strong>{esc(d["id"])}</strong>&nbsp;&nbsp;{esc(d.get("short_title") or d["title"])}</span><span>{esc(date_label(d.get("last_updated") or d.get("archive_added")))}</span></a>' for d in recent)
     return f'<div class="container"><div class="simple-page">{breadcrumb("../",[("Home","../index.html"),("Justice Archive","index.html"),("Recent Changes",None)])}<h1>Recent Changes</h1><div class="side-card">{items or "No records yet."}</div></div></div>'
+
+def search_page():
+    return f'''<div class="container search-page" data-search-page>
+{breadcrumb('../',[('Home','index.html'),('Search',None)])}
+<section class="search-page-hero">
+  <div class="eyebrow">Archive Search</div>
+  <h1>Search the Archive</h1>
+  <form class="search-page-form" data-search-page-form>
+    <input type="search" data-search-page-input placeholder="Search titles, document IDs and document text…" aria-label="Search archive records">
+    <button type="submit">{ICONS['search']}<span>Search</span></button>
+  </form>
+</section>
+<section class="search-page-results">
+  <div class="search-page-summary" data-search-summary>Enter a search term to find matching archive pages and documents.</div>
+  <div data-search-page-results></div>
+</section>
+</div>'''
 
 def simple_page(title, text, baseprefix=''):
     return f'<div class="container"><div class="simple-page"><h1>{esc(title)}</h1><p>{esc(text)}</p></div></div>'
@@ -245,18 +255,20 @@ def build():
     docs=load_docs()
     copy_source()
     write('index.html','Home',home_page(),'home')
-    write('justice/index.html','The Arxian Justice Archive',archive_home(docs),'browse')
+    write('justice/index.html','The Arxian Justice Archive',archive_home(docs),'justice')
     for cat in CATEGORIES:
-        write(f'justice/{cat}/index.html',CATEGORIES[cat][0],category_page(cat,docs),'browse')
+        write(f'justice/{cat}/index.html',CATEGORIES[cat][0],category_page(cat,docs),'justice')
     for d in docs:
-        write(f"justice/documents/{d['id'].lower()}/index.html",f"{d['id']} — {d['title']}",document_page(d,docs),'browse')
-    write('justice/recent-changes/index.html','Recent Changes',recent_page(docs),'browse')
-    write('collections/index.html','Collections',simple_page('Collections','The Arxian Justice Archive is the first active public collection. Additional Arx collections can be added here later.'))
-    write('about/index.html','About Arx',simple_page('About Arx','The wider Arx public website is being developed. A fuller national overview can be added here when ready.'))
-    write('help/index.html','Help',simple_page('Using the Archive','Use the search field or Browse menu to locate records. Document pages provide the current formatted document and available downloads.'))
-    write('contact/index.html','Contact',simple_page('Contact','For corrections or questions about archive records, contact the Department of Justice through the Arx Discord.'))
-    # Search index: avoid exposing every PDF word in the page itself, but make it searchable in JS.
-    index=[]
+        write(f"justice/documents/{d['id'].lower()}/index.html",f"{d['id']} — {d['title']}",document_page(d,docs),'justice')
+    write('justice/recent-changes/index.html','Recent Changes',recent_page(docs),'justice')
+    write('search/index.html','Search the Archive',search_page())
+    # Search index includes public archive landing/category pages plus full-text document records.
+    index=[
+        {'id':'','title':'Technocratic State of Arx','category':'Site','type':'Page','status':'','summary':'Official public information and records of Arx.','text':'Arx official public information records Justice Archive','url':'index.html'},
+        {'id':'','title':'The Arxian Justice Archive','category':'Justice Archive','type':'Page','status':'','summary':'Official legal and governmental records of Arx.','text':'constitution laws policies procedures justice rulings treaties agreements archive','url':'justice/index.html'},
+    ]
+    for cat,(name,desc) in CATEGORIES.items():
+        index.append({'id':'','title':name,'category':'Justice Archive','type':'Collection','status':'','summary':desc,'text':desc,'url':f'justice/{cat}/index.html'})
     for d in docs:
         txt=re.sub(r'\s+',' ',d.get('_search_text','')).strip()
         index.append({'id':d['id'],'title':d['title'],'category':CATEGORIES[d['category']][0],'type':d.get('type',''),'status':d.get('status',''),'summary':d.get('summary',''),'text':txt[:160000],'url':d['url']})
