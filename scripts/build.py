@@ -350,9 +350,8 @@ def page_header(base, active=""):
 
 
 def page_footer(base, section=""):
-    if section == "justice":
-        return f'''<footer class="site-footer"><div class="site-footer-inner"><img class="footer-mark" src="{base}assets/images/justice-shield.png" alt=""><strong>The Arxian Justice Archive</strong><span class="footer-sep">•</span><a href="{base}index.html">Technocratic State of Arx</a></div></footer>'''
-    return f'''<footer class="site-footer"><div class="site-footer-inner general-footer"><img class="footer-mark arx-footer-mark" src="{base}assets/images/arx-flag.png" alt=""><strong>Technocratic State of Arx</strong><span class="footer-spacer"></span><a href="{base}about/index.html">About</a><a href="{base}guides/index.html">Guides</a><a href="{base}justice/index.html">Justice Archive</a></div></footer>'''
+    # Keep the national footer identical across the entire site. Navigation already lives in the header.
+    return f'''<footer class="site-footer"><div class="site-footer-inner general-footer"><img class="footer-mark arx-footer-mark" src="{base}assets/images/arx-flag.png" alt=""><strong>Technocratic State of Arx</strong></div></footer>'''
 
 
 def shell(title, rel_path, content, active=""):

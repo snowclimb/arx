@@ -45,7 +45,7 @@
 
   function loadIndex() {
     if (!indexPromise) {
-      indexPromise = fetch(base + 'assets/search-index.json', { cache: 'force-cache' })
+      indexPromise = fetch(base + 'assets/search-index.json?v=1.2.5', { cache: 'no-cache' })
         .then(r => r.ok ? r.json() : [])
         .catch(() => []);
     }
