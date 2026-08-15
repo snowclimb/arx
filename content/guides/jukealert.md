@@ -2,7 +2,7 @@
 title: JukeAlert
 slug: jukealert
 category: Core Mechanics
-order: 40
+order: 4
 description: Learn how snitches detect players and how jukebox snitches record activity around important areas.
 source_url: https://civmc.net/wiki/plugins/unique/jukealert
 source_label: Official CivMC Wiki — JukeAlert
@@ -13,16 +13,16 @@ JukeAlert provides CivMC's surveillance mechanic. Reinforced note blocks and juk
 
 ## Note block snitches
 
-A note block snitch reports players entering or joining inside its field. It is useful for live alerts but does not retain the same detailed history as a jukebox.
+A note block snitch reports players entering or joining inside its field. It is useful for live alerts but doesn't retain the same detailed history as a jukebox.
 
 ## Jukebox snitches
 
-Jukebox snitches also log interactions such as block breaks and opening containers or doors. The official guide describes `/jainfo` and `/ja` for reviewing a nearby jukebox's information, and `/jalist` for viewing snitches you can access.
+Jukebox snitches also log interactions such as block breaks and opening containers/doors. You can use `/jainfo` and `/ja` to review a nearby jukebox's information, and `/jalist` for viewing snitches you can access.
 
 ## Naming and maintenance
 
-The official guide uses `/janame [name]` to rename a snitch while standing within its range. It also describes snitches becoming dormant when not refreshed, so important monitoring infrastructure needs occasional attention.
+Use `/janame [name]` to rename a snitch while standing within its range. Snitches can also become dormant when not refreshed, so it's important to monitor infrastructure for occasional maintenance.
 
 ## Arx advice
 
-Assume important government areas are monitored. Do not break or alter snitches you do not own, and keep sensitive snitch groups separate from broad public access.
+Assume important government areas are monitored. Do not break or alter snitches you do not own, and keep sensitive snitch groups separate from broad public access namelayers.

@@ -2,7 +2,7 @@
 title: Citadel & Reinforcement
 slug: citadel
 category: Core Mechanics
-order: 30
+order: 3
 description: Reinforce blocks, protect containers and understand how protected property can still be broken.
 source_url: https://civmc.net/wiki/plugins/essential/citadel.html
 source_label: Official CivMC Wiki — Citadel

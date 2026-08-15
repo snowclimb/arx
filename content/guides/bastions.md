@@ -2,7 +2,7 @@
 title: Bastions
 slug: bastions
 category: Core Mechanics
-order: 60
+order: 6
 description: Area-control blocks used to prevent hostile reinforcement, fluids and — in stronger forms — block placement.
 source_url: https://civmc.net/wiki/plugins/unique/bastions
 source_label: Official CivMC Wiki — Bastions
@@ -13,10 +13,10 @@ Bastions create protected fields around themselves. They are a later-stage defen
 
 ## City bastions
 
-The official guide describes city bastions as relatively large-area protection that prevents reinforcement plus placement of fluids and certain entities such as boats.
+City bastions are relatively large-area protection that prevents reinforcement plus placement of fluids and certain entities such as boats.
 
 ## Vault bastions
 
-Vault bastions inherit city-bastion effects and additionally prevent other block placement within a smaller protected area. They are used for areas requiring significantly stronger control.
+Vault bastions inherit city-bastion effects and additionally prevents block placement within a smaller protected area. These are used for areas requiring significantly stronger control.
 
-Bastion recipes are available through CivMC's FactoryMod recipe system. For a new resident, the main lesson is simply that block placement rules can change inside a bastion field even when normal Minecraft would allow the action.
+Bastion recipes are available through CivMC's FactoryMod recipe system. The main lesson is simply that block placement rules can change inside a bastion field even when normal Minecraft would allow the action.

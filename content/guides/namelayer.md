@@ -2,7 +2,7 @@
 title: NameLayer
 slug: namelayer
 category: Core Mechanics
-order: 20
+order: 2
 description: Groups, permissions and shared access — the foundation used by several other CivMC mechanics.
 source_url: https://civmc.net/wiki/plugins/essential/namelayer
 source_label: Official CivMC Wiki — NameLayer
