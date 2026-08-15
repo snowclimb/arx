@@ -1,0 +1,77 @@
+site_name: Technocratic State of Arx
+site_description: Official public records and Justice Archive of the Technocratic State of Arx
+site_url: https://snowclimb.github.io/arx/
+repo_name: arx
+repo_url: https://github.com/snowclimb/arx
+edit_uri: edit/main/docs/
+
+theme:
+  name: material
+  language: en
+  logo: assets/images/arx-shield.webp
+  favicon: assets/images/arx-shield.webp
+  font:
+    text: Roboto
+    code: Roboto Mono
+  palette:
+    - media: "(prefers-color-scheme: light)"
+      scheme: default
+      primary: custom
+      accent: custom
+      toggle:
+        icon: material/weather-night
+        name: Switch to dark mode
+    - media: "(prefers-color-scheme: dark)"
+      scheme: slate
+      primary: custom
+      accent: custom
+      toggle:
+        icon: material/weather-sunny
+        name: Switch to light mode
+  features:
+    - navigation.tabs
+    - navigation.sections
+    - navigation.top
+    - navigation.footer
+    - search.suggest
+    - search.highlight
+    - content.action.edit
+    - content.action.view
+    - toc.follow
+
+plugins:
+  - search
+
+markdown_extensions:
+  - admonition
+  - attr_list
+  - md_in_html
+  - tables
+  - toc:
+      permalink: true
+      toc_depth: 3
+  - pymdownx.details
+  - pymdownx.superfences
+
+extra_css:
+  - assets/css/extra.css
+
+extra:
+  social: []
+  generator: false
+
+nav:
+  - Arx:
+      - Home: index.md
+  - The Arxian Justice Archive:
+      - Archive Home: justice/index.md
+      - Constitution:
+          - Constitution Index: justice/constitution/index.md
+          - CON-001 — Constitution of the Technocratic State of Arx: justice/constitution/con-001.md
+      - Laws: justice/laws/index.md
+      - Policies & Procedures: justice/policies/index.md
+      - Justice Rulings: justice/rulings/index.md
+      - Treaties & Agreements: justice/treaties/index.md
+      - Recent Changes: justice/recent-changes.md
+      - Archive: justice/archive/index.md
+      - Document Template: justice/templates/document-template.md
