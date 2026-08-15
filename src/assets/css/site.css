@@ -1383,3 +1383,102 @@ body { background:#fff; }
   }
   .home-hero-inner { width:calc(100% - 30px); }
 }
+
+
+/* --------------------------------------------------------------------------
+   V1.2.7 — persistent mobile search access
+   -------------------------------------------------------------------------- */
+.mobile-search-link { display:none; }
+
+@media (max-width: 900px) {
+  .site-header-inner { grid-template-columns:auto 1fr auto auto; }
+  .mobile-search-link {
+    grid-column:3;
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+    justify-self:end;
+    width:40px;
+    height:40px;
+    border-radius:7px;
+    color:#e7eef2;
+    text-decoration:none;
+    background:rgba(255,255,255,.045);
+    border:1px solid rgba(255,255,255,.10);
+    transition:background .16s ease, color .16s ease;
+  }
+  .mobile-search-link:hover,
+  .mobile-search-link:focus-visible {
+    color:#fff;
+    background:rgba(255,255,255,.09);
+  }
+  .mobile-search-link svg {
+    width:19px;
+    height:19px;
+    fill:none;
+    stroke:currentColor;
+    stroke-width:1.8;
+  }
+  .mobile-toggle { grid-column:4; }
+}
+
+
+/* --------------------------------------------------------------------------
+   V1.2.8 — compact Justice Archive feature card on phones
+   Keeps the V1.2.7 mobile search shortcut while correcting the oversized
+   Constitution cover treatment on narrow screens.
+   -------------------------------------------------------------------------- */
+.document-cover-feature { min-width:0; }
+
+@media (max-width: 620px) {
+  .feature-card {
+    grid-template-columns:1fr;
+    min-height:0;
+  }
+  .document-cover-feature {
+    display:flex;
+    justify-content:center;
+    padding:16px 14px 0;
+    background:#fff;
+  }
+  .document-cover-feature .doc-cover {
+    width:132px;
+    height:166px;
+    min-height:166px;
+    flex:0 0 132px;
+    padding:10px;
+    border-radius:7px;
+    box-shadow:0 8px 20px rgba(8,25,70,.13);
+  }
+  .document-cover-feature .doc-cover::before { inset:8px; }
+  .document-cover-feature .doc-cover::after { inset:13px; }
+  .document-cover-feature .doc-cover img {
+    width:52px;
+    height:52px;
+  }
+  .document-cover-feature .doc-cover .cover-id {
+    font-size:18px;
+    margin-top:10px;
+  }
+  .document-cover-feature .doc-cover .cover-title { display:none; }
+  .feature-body {
+    padding:16px 16px 18px;
+  }
+  .feature-main-row > div:first-child {
+    width:100%;
+    text-align:center;
+  }
+  .feature-kicker { font-size:11px; }
+  .feature-title {
+    margin-top:8px;
+    font-size:31px;
+  }
+  .feature-subtitle { font-size:16px; }
+  .feature-meta {
+    margin-top:8px;
+    font-size:12px;
+  }
+  .feature-divider { margin:15px 0 12px; }
+  .action-row { gap:9px; }
+  .action-btn { min-height:52px; }
+}

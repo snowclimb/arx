@@ -335,6 +335,7 @@ def page_header(base, active=""):
     discord = SITE_CONFIG.get("discord_url", "#")
     return f'''<header class="site-header"><div class="site-header-inner">
 <a class="brand" href="{base}index.html"><span class="brand-ribbon"><img src="{base}assets/images/arx-flag.png" alt="Flag of Arx"></span><span class="brand-text"><strong>ARX</strong><span>TECHNOCRATIC STATE</span></span></a>
+<a class="mobile-search-link" href="{base}search/index.html" aria-label="Search the Arx website">{icon('search')}</a>
 <button class="mobile-toggle" aria-label="Toggle navigation" aria-expanded="false" data-mobile-toggle>☰</button>
 <nav class="main-nav" aria-label="Primary navigation" data-main-nav>
 <a class="nav-link{home_cls}" href="{base}index.html">HOME</a>
@@ -357,7 +358,7 @@ def page_footer(base, section=""):
 def shell(title, rel_path, content, active=""):
     base = base_for(rel_path)
     section = "justice" if active == "justice" else ""
-    return f'''<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="description" content="Official website of the Technocratic State of Arx"><meta name="color-scheme" content="light"><title>{esc(title)} | Arx</title><link rel="icon" href="{base}assets/images/arx-flag.png"><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=EB+Garamond:wght@500;600;700&family=Roboto:wght@300;400;500;600;700&display=swap" onload="this.onload=null;this.rel='stylesheet'"><noscript><link href="https://fonts.googleapis.com/css2?family=EB+Garamond:wght@500;600;700&family=Roboto:wght@300;400;500;600;700&display=swap" rel="stylesheet"></noscript><link rel="stylesheet" href="{base}assets/css/site.css?v=1.2.6"><style>:root{{--crest-url:url('{base}assets/images/arx-state-crest.webp')}}</style></head><body data-base="{base}">{page_header(base, active)}<main class="site-main">{content}</main>{page_footer(base, section)}<script src="{base}assets/js/site.js?v=1.2.6" defer></script></body></html>'''
+    return f'''<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="description" content="Official website of the Technocratic State of Arx"><meta name="color-scheme" content="light"><title>{esc(title)} | Arx</title><link rel="icon" href="{base}assets/images/arx-flag.png"><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=EB+Garamond:wght@500;600;700&family=Roboto:wght@300;400;500;600;700&display=swap" onload="this.onload=null;this.rel='stylesheet'"><noscript><link href="https://fonts.googleapis.com/css2?family=EB+Garamond:wght@500;600;700&family=Roboto:wght@300;400;500;600;700&display=swap" rel="stylesheet"></noscript><link rel="stylesheet" href="{base}assets/css/site.css?v=1.2.8"><style>:root{{--crest-url:url('{base}assets/images/arx-state-crest.webp')}}</style></head><body data-base="{base}">{page_header(base, active)}<main class="site-main">{content}</main>{page_footer(base, section)}<script src="{base}assets/js/site.js?v=1.2.8" defer></script></body></html>'''
 
 
 def breadcrumb(base, parts):
@@ -393,7 +394,7 @@ def type_icon_key(types):
 
 
 def cover(d, mini=False):
-    cls = "document-cover-mini" if mini else ""
+    cls = "document-cover-mini" if mini else "document-cover-feature"
     type_cls = re.sub(r"[^a-z0-9]+", "-", (d.get("type") or "document").lower()).strip("-")
     return f'''<div class="{cls}"><div class="doc-cover cover-{esc(type_cls)}"><img src="PLACEHOLDER_JUSTICE" alt=""><div class="cover-id">{esc(d['id'])}</div><div class="cover-title">{esc(d.get('short_title') or d['title'])}</div></div></div>'''
 
