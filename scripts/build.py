@@ -131,9 +131,9 @@ def extract_pdf_text(path: Path | None):
 
 
 def load_docs():
-    docs = []
+    raw_docs = []
     if not DOCS_ROOT.exists():
-        return docs
+        return raw_docs
     for folder in sorted(DOCS_ROOT.iterdir()):
         if not folder.is_dir() or folder.name.startswith("_"):
             continue
@@ -151,6 +151,34 @@ def load_docs():
         d["url"] = f"justice/documents/{d['slug']}/"
         pdf = d.get("pdf") or ""
         d["_pdf_path"] = folder / pdf if pdf else None
+        raw_docs.append(d)
+
+    # V1.2.4: when an update is copied over an older repository, stale legacy
+    # document folders may still exist beside their new short-ID replacements.
+    # Canonical records list those old IDs in `aliases`; do not index/copy the
+    # stale record as a second document. Alias URLs are generated separately as
+    # redirects below, so old bookmarks still work without duplicate records.
+    alias_targets = {}
+    for d in raw_docs:
+        for alias in d.get("aliases") or []:
+            if alias:
+                alias_targets[str(alias).strip().lower()] = str(d["id"]).strip()
+
+    docs = []
+    seen_ids = set()
+    seen_slugs = set()
+    for d in raw_docs:
+        key = str(d["id"]).strip().lower()
+        target = alias_targets.get(key)
+        if target and target.lower() != key:
+            print(f"Skipping stale alias document {d['id']} (canonical: {target})")
+            continue
+        slug = str(d["slug"]).strip().lower()
+        if key in seen_ids or slug in seen_slugs:
+            print(f"Skipping duplicate document record {d['id']}")
+            continue
+        seen_ids.add(key)
+        seen_slugs.add(slug)
         d["_search_text"] = extract_pdf_text(d["_pdf_path"]) if d["_pdf_path"] else ""
         docs.append(d)
     return docs
@@ -306,7 +334,7 @@ def page_header(base, active=""):
     join_cls = " active" if active == "join" else ""
     discord = SITE_CONFIG.get("discord_url", "#")
     return f'''<header class="site-header"><div class="site-header-inner">
-<a class="brand" href="{base}index.html"><span class="brand-ribbon"><img src="{base}assets/images/arx-flag.webp" alt="Flag of Arx"></span><span class="brand-text"><strong>ARX</strong><span>TECHNOCRATIC STATE</span></span></a>
+<a class="brand" href="{base}index.html"><span class="brand-ribbon"><img src="{base}assets/images/arx-flag.png" alt="Flag of Arx"></span><span class="brand-text"><strong>ARX</strong><span>TECHNOCRATIC STATE</span></span></a>
 <button class="mobile-toggle" aria-label="Toggle navigation" aria-expanded="false" data-mobile-toggle>☰</button>
 <nav class="main-nav" aria-label="Primary navigation" data-main-nav>
 <a class="nav-link{home_cls}" href="{base}index.html">HOME</a>
@@ -324,13 +352,13 @@ def page_header(base, active=""):
 def page_footer(base, section=""):
     if section == "justice":
         return f'''<footer class="site-footer"><div class="site-footer-inner"><img class="footer-mark" src="{base}assets/images/justice-shield.png" alt=""><strong>The Arxian Justice Archive</strong><span class="footer-sep">•</span><a href="{base}index.html">Technocratic State of Arx</a></div></footer>'''
-    return f'''<footer class="site-footer"><div class="site-footer-inner general-footer"><img class="footer-mark arx-footer-mark" src="{base}assets/images/arx-flag.webp" alt=""><strong>Technocratic State of Arx</strong><span class="footer-spacer"></span><a href="{base}about/index.html">About</a><a href="{base}guides/index.html">Guides</a><a href="{base}justice/index.html">Justice Archive</a></div></footer>'''
+    return f'''<footer class="site-footer"><div class="site-footer-inner general-footer"><img class="footer-mark arx-footer-mark" src="{base}assets/images/arx-flag.png" alt=""><strong>Technocratic State of Arx</strong><span class="footer-spacer"></span><a href="{base}about/index.html">About</a><a href="{base}guides/index.html">Guides</a><a href="{base}justice/index.html">Justice Archive</a></div></footer>'''
 
 
 def shell(title, rel_path, content, active=""):
     base = base_for(rel_path)
     section = "justice" if active == "justice" else ""
-    return f'''<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="description" content="Official website of the Technocratic State of Arx"><title>{esc(title)} | Arx</title><link rel="icon" href="{base}assets/images/arx-flag.webp"><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=EB+Garamond:wght@500;600;700&family=Roboto:wght@300;400;500;600;700&display=swap" rel="stylesheet"><link rel="stylesheet" href="{base}assets/css/site.css"><style>:root{{--crest-url:url('{base}assets/images/arx-state-crest.webp')}}</style></head><body data-base="{base}">{page_header(base, active)}<main class="site-main">{content}</main>{page_footer(base, section)}<script src="{base}assets/js/site.js" defer></script></body></html>'''
+    return f'''<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="description" content="Official website of the Technocratic State of Arx"><meta name="color-scheme" content="light"><title>{esc(title)} | Arx</title><link rel="icon" href="{base}assets/images/arx-flag.png"><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=EB+Garamond:wght@500;600;700&family=Roboto:wght@300;400;500;600;700&display=swap" onload="this.onload=null;this.rel='stylesheet'"><noscript><link href="https://fonts.googleapis.com/css2?family=EB+Garamond:wght@500;600;700&family=Roboto:wght@300;400;500;600;700&display=swap" rel="stylesheet"></noscript><link rel="stylesheet" href="{base}assets/css/site.css"><style>:root{{--crest-url:url('{base}assets/images/arx-state-crest.webp')}}</style></head><body data-base="{base}">{page_header(base, active)}<main class="site-main">{content}</main>{page_footer(base, section)}<script src="{base}assets/js/site.js" defer></script></body></html>'''
 
 
 def breadcrumb(base, parts):
@@ -451,7 +479,7 @@ def guides_index(guides):
     for category in cats:
         cards = "".join(guide_card(g) for g in grouped[category])
         sections.append(f'''<section class="guide-category"><div class="guide-category-head"><h2>{esc(category)}</h2><span>{len(grouped[category])} guide{'s' if len(grouped[category]) != 1 else ''}</span></div><div class="guide-card-grid">{cards}</div></section>''')
-    return f'''<section class="guides-hero"><div class="container guides-hero-inner"><div><div class="eyebrow light">Arx Guides</div><h1>Learn CivMC without reading everything at once.</h1><p>A curated route through the mechanics most useful to a new resident, with direct links back to the official CivMC Wiki for the full reference.</p><a class="hero-btn primary bright" href="getting-started/index.html">Start the guide {icon('arrow')}</a></div><div class="guide-route"><span>1</span><b>Start</b><i></i><span>2</span><b>Protect</b><i></i><span>3</span><b>Build</b><i></i><span>4</span><b>Trade</b></div></div></section><div class="container guide-library"><div class="guide-library-intro"><div><div class="eyebrow">Guide library</div><h2>Browse by mechanic</h2></div><p>These pages are intentionally shorter than the server wiki. Use them for orientation, then follow the official source link when you need exact or advanced details.</p></div>{''.join(sections)}</div>'''
+    return f'''<section class="guides-hero"><div class="container guides-hero-inner"><div><div class="eyebrow light">Arx Guides</div><h1>Learn CivMC without reading everything at once.</h1><p>A curated route through the mechanics most useful to a new resident, with direct links back to the official CivMC Wiki for the full reference.</p><a class="hero-btn primary bright" href="getting-started/index.html">Start the guide {icon('arrow')}</a></div></div></section><div class="container guide-library"><div class="guide-library-intro"><div><div class="eyebrow">Guide library</div><h2>Browse by mechanic</h2></div><p>These pages are intentionally shorter than the server wiki. Use them for orientation, then follow the official source link when you need exact or advanced details.</p></div>{''.join(sections)}</div>'''
 
 
 def guide_sidebar(current):

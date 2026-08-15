@@ -1284,3 +1284,106 @@ body { background:#fff; }
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { scroll-behavior:auto !important; animation-duration:.001ms !important; animation-iteration-count:1 !important; transition-duration:.001ms !important; }
 }
+
+/* --------------------------------------------------------------------------
+   V1.2.4 — polish pass from live-site feedback
+   -------------------------------------------------------------------------- */
+
+/* Keep submenu buttons visually clean. The dropdown itself provides the context. */
+.nav-drop-button::after { content:none !important; margin:0 !important; }
+
+/* Replace the detached active-page underline with a text-level state. */
+.nav-link.active::after,
+.nav-drop-button.active::after { display:none !important; }
+.nav-link.active,
+.nav-drop-button.active { color:#9fe4bf; }
+.nav-link,
+.nav-drop-button { transition:color .16s ease, background .16s ease; }
+.nav-link:hover,
+.nav-drop-button:hover { color:#fff; background:rgba(255,255,255,.035); }
+
+/* The general footer should use the national mark in its real colours. */
+.arx-footer-mark {
+  filter:none !important;
+  object-fit:contain !important;
+  opacity:1;
+}
+
+/* The guide home no longer uses the decorative numbered route panel. */
+.guides-hero { position:relative; overflow:hidden; }
+.guides-hero::after {
+  content:"";
+  position:absolute;
+  right:max(4vw,36px);
+  top:50%;
+  width:min(390px,30vw);
+  aspect-ratio:1;
+  transform:translateY(-50%);
+  background:var(--crest-url) center/contain no-repeat;
+  opacity:.075;
+  filter:brightness(1.8);
+  pointer-events:none;
+}
+.guides-hero-inner {
+  position:relative;
+  z-index:1;
+  grid-template-columns:minmax(0,850px);
+  justify-content:start;
+}
+
+/* Give the homepage hero a calmer inner measure on large screens rather than
+   pinning its copy against the widest global container edge. */
+@media (min-width:901px) {
+  .home-hero-inner {
+    width:min(1280px, calc(100% - 72px));
+    margin-inline:auto;
+  }
+}
+
+/* Small quality-of-life motion on responsive navigation. */
+@keyframes mobileNavIn {
+  from { opacity:0; transform:translateY(-5px); }
+  to { opacity:1; transform:none; }
+}
+
+/* Use a dedicated full hanging-banner asset on tablet/mobile. This avoids the
+   split-colour square ending before the pointed lower section and is also PNG
+   based for broad mobile compatibility. Desktop keeps the approved treatment. */
+@media (max-width:900px) {
+  .brand-ribbon {
+    width:58px !important;
+    flex-basis:58px !important;
+    height:78px !important;
+    padding:0 !important;
+    background:transparent !important;
+    clip-path:none !important;
+    box-shadow:none !important;
+    overflow:visible !important;
+  }
+  .brand-ribbon img {
+    content:url("../images/arx-flag-mobile.png");
+    width:58px !important;
+    height:78px !important;
+    object-fit:fill !important;
+    display:block;
+    filter:none !important;
+  }
+  .main-nav.open,
+  .header-actions.open { animation:mobileNavIn .16s ease both; }
+  .nav-link:hover,
+  .nav-drop-button:hover { background:rgba(255,255,255,.055); }
+  .guides-hero::after { width:300px; right:-80px; opacity:.05; }
+}
+
+@media (max-width:620px) {
+  .brand-ribbon {
+    width:54px !important;
+    flex-basis:54px !important;
+    height:72px !important;
+  }
+  .brand-ribbon img {
+    width:54px !important;
+    height:72px !important;
+  }
+  .home-hero-inner { width:calc(100% - 30px); }
+}
