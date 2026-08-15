@@ -1,0 +1,31 @@
+{
+  "id": "AN-0015-PCA01",
+  "title": "Criminal Code of Arx",
+  "short_title": "Criminal Code of Arx",
+  "type": "Law",
+  "status": "Legacy / Under Review",
+  "adopted": "2025-12-22",
+  "authors": [
+    "Sunflower73",
+    "Aether Starborn",
+    "Evil Dave"
+  ],
+  "authority": "Central Council",
+  "summary": "Sets out general criminal liability, penalties and offences against the nation, players, property, law and order.",
+  "legacy_id": "AN.0015",
+  "legacy_code": "PCA01",
+  "related_documents": [
+    "AN-0012-ADF-AP001"
+  ],
+  "pdf": "current.pdf",
+  "department": "",
+  "version": "",
+  "effective": "",
+  "ratified": "",
+  "last_updated": "",
+  "archive_added": "2026-08-15",
+  "supersedes": [],
+  "superseded_by": [],
+  "notes": "",
+  "versions": []
+}

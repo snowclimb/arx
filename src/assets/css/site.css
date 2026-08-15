@@ -726,3 +726,177 @@ button, input, select { font: inherit; }
   .search-page-form button { min-width:58px; padding:0 16px; }
   .search-page-form button span { display:none; }
 }
+
+/* V1.2.2 — unified archive, historical records and robust national banner */
+
+/* The flag is a fixed-size hanging flag, not a viewport-scaled image. */
+.brand-ribbon {
+  width: 72px;
+  flex-basis: 72px;
+  height: 96px;
+  margin-top: 0;
+  padding: 0;
+  align-self: flex-start;
+  overflow: hidden;
+  background: linear-gradient(90deg, #0abf6a 0 50%, #ffffff 50% 100%);
+  clip-path: polygon(0 0, 100% 0, 100% 78%, 50% 100%, 0 78%);
+  box-shadow: 0 5px 16px rgba(0,0,0,.22);
+}
+.brand-ribbon::after { display:none; }
+.brand-ribbon img {
+  display:block;
+  width:72px;
+  height:72px;
+  max-width:none;
+  object-fit:cover;
+  object-position:center;
+  border-radius:0;
+}
+.site-header-inner { overflow:visible; }
+
+/* Master archive preset chips */
+.active-filter-bar {
+  min-height:52px;
+  display:flex;
+  flex-wrap:wrap;
+  gap:8px;
+  align-items:center;
+  padding:12px 0 4px;
+  border-bottom:1px solid #e7ecef;
+}
+.filter-context { color:#68737e; font-size:12px; margin-right:2px; }
+.filter-chip,
+.clear-filters {
+  border:1px solid #c9ddd2;
+  background:#f2faf5;
+  color:#087041;
+  border-radius:999px;
+  min-height:30px;
+  padding:5px 10px;
+  font-size:11px;
+  font-weight:600;
+  cursor:pointer;
+}
+.filter-chip:hover { background:#e5f5eb; }
+.filter-chip b { margin-left:5px; font-size:14px; line-height:0; }
+.clear-filters { border-color:#d8dee3; background:#fff; color:#56606a; }
+.clear-filters:hover { background:#f5f7f8; }
+.archive-index-hero { min-height:170px; }
+.master-toolbar { min-height:48px; }
+.catalogue-subline { display:block; color:#7a838d; font-size:11px; margin-top:3px; }
+.sort-select.compact { width:auto; min-width:210px; }
+.filter-option { cursor:pointer; }
+.filter-option input { accent-color:#087c46; }
+.filter-option > span:not(.filter-count):not(.status-dot) { flex:1; }
+.status-dot { width:9px; height:9px; border-radius:50%; display:inline-block; flex:0 0 9px; background:#7d8790; }
+.status-dot.current { background:#078346; }
+.status-dot.legacy { background:#d99b10; }
+.status-dot.superseded { background:#8b9299; }
+.status-dot.repealed { background:#a84444; }
+.status-dot.draft { background:#d69d1a; }
+.status-dot.historical { background:#536a9a; }
+
+.status-pill.legacy { background:#fff7df; color:#91620a; border-color:#efdca6; font-weight:600; }
+.status-pill.repealed { background:#fff0f0; color:#973d3d; border-color:#eccaca; font-weight:600; }
+.status-pill.historical { background:#eef3fb; color:#405c8e; border-color:#d7e0ef; font-weight:600; }
+.status-pill.record { background:#f4f5f6; color:#555f69; }
+.current-badge.legacy { background:#fff4d7; color:#8b5e06; border-color:#efd797; }
+.current-badge.superseded { background:#f1f2f3; color:#61676d; border-color:#dfe2e5; }
+.current-badge.repealed { background:#fff0f0; color:#963f3f; border-color:#eccaca; }
+.current-badge.historical { background:#eef3fb; color:#3e5987; border-color:#d7e0ef; }
+.current-badge.draft { background:#fff6df; color:#97640a; border-color:#f0dba4; }
+
+/* Automatic cover accents by document type. */
+.doc-cover.cover-constitution { background:linear-gradient(145deg,#123891 0%,#071f67 60%,#06184d 100%); }
+.doc-cover.cover-law { background:linear-gradient(145deg,#153a91 0%,#0a286d 58%,#071c4e 100%); }
+.doc-cover.cover-policy,
+.doc-cover.cover-procedure,
+.doc-cover.cover-guideline { background:linear-gradient(145deg,#0d6970 0%,#07555c 58%,#063b44 100%); }
+.doc-cover.cover-treaty,
+.doc-cover.cover-agreement { background:linear-gradient(145deg,#0b7250 0%,#07563d 58%,#063b2c 100%); }
+.doc-cover.cover-historical-record { background:linear-gradient(145deg,#4a5871 0%,#354158 58%,#263144 100%); }
+.doc-cover.cover-justice-ruling { background:linear-gradient(145deg,#513f82 0%,#362a69 58%,#241c4e 100%); }
+
+/* Historical and review notices */
+.document-warning {
+  margin:18px 0 4px;
+  display:flex;
+  gap:10px 18px;
+  align-items:center;
+  padding:12px 15px;
+  border-radius:7px;
+  border:1px solid #e0e4e8;
+  font-size:12px;
+  line-height:1.45;
+}
+.document-warning strong { white-space:nowrap; }
+.document-warning.legacy { background:#fff8e6; border-color:#ead8a6; color:#75500b; }
+.document-warning.superseded { background:#f4f5f6; border-color:#dce0e3; color:#555f67; }
+.document-warning.repealed { background:#fff1f1; border-color:#e9caca; color:#863737; }
+.document-warning.historical { background:#f1f5fb; border-color:#d6e0ef; color:#405a84; }
+.document-warning.draft { background:#fff9e9; border-color:#ead9ac; color:#77520d; }
+
+/* Version switching stays inside the document viewer. */
+.version-row.version-select {
+  width:100%;
+  border:0;
+  border-bottom:1px solid #e7eaed;
+  background:transparent;
+  text-align:left;
+  cursor:pointer;
+  color:inherit;
+}
+.version-row.version-select:hover { background:#f7faf8; }
+.version-row.version-select.active { background:#edf7f1; color:#076c3d; }
+.version-row.version-select:last-child { border-bottom:0; }
+.version-viewing-note {
+  min-height:38px;
+  align-items:center;
+  gap:8px;
+  padding:8px 12px;
+  background:#fff7df;
+  color:#7f5809;
+  border-bottom:1px solid #e5d29b;
+  font-size:11px;
+}
+
+/* PDF-only workflow */
+.viewer-actions { gap:10px; }
+.viewer-actions .action-btn { min-width:165px; }
+.pdf-frame iframe { background:#dfe2e5; }
+
+/* Master archive table gets room for long status labels. */
+@media (min-width: 1241px) {
+  .catalogue-head, .doc-row { grid-template-columns: 145px minmax(270px,1fr) 160px 210px 150px 42px; }
+}
+
+@media (max-width: 1240px) and (min-width: 901px) {
+  .brand-ribbon { width:64px; flex-basis:64px; height:88px; }
+  .brand-ribbon img { width:64px; height:64px; }
+  .catalogue-head, .doc-row { grid-template-columns:110px minmax(210px,1fr) 125px 185px 120px 38px; }
+}
+
+@media (max-width: 900px) {
+  /* Preserve the smaller-resolution treatment that already worked. */
+  .brand-ribbon { width:58px; flex-basis:58px; height:78px; margin-top:0; clip-path:polygon(0 0,100% 0,100% 79%,50% 100%,0 79%); }
+  .brand-ribbon img { width:58px; height:58px; }
+  .document-warning { align-items:flex-start; flex-direction:column; gap:3px; }
+  .document-warning strong { white-space:normal; }
+  .active-filter-bar { padding-top:8px; }
+  .filter-panel { display:block; }
+  .catalogue-wrap { grid-template-columns:1fr; }
+}
+
+@media (max-width: 620px) {
+  .filter-panel { padding:14px; }
+  .filter-group { margin-top:16px; }
+  .sort-select.compact { min-width:0; width:100%; }
+  .master-toolbar { align-items:flex-start; flex-direction:column; }
+  .active-filter-bar { gap:6px; }
+  .filter-chip, .clear-filters { font-size:10px; }
+}
+.current-badge.legacy,
+.current-badge.superseded,
+.current-badge.repealed,
+.current-badge.historical,
+.current-badge.draft { border-style:solid; border-width:1px; }

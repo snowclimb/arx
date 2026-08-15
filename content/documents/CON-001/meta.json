@@ -16,5 +16,42 @@
   "pdf": "current.pdf",
   "docx": "",
   "related": [],
-  "versions": []
+  "versions": [
+    {
+      "key": "2026-previous",
+      "label": "Previous 2026 Constitution",
+      "date": "",
+      "status": "Superseded",
+      "file": "versions/2026-previous.pdf",
+      "notes": ""
+    },
+    {
+      "key": "2025-revised",
+      "label": "Revised 2025 Constitution",
+      "date": "",
+      "status": "Superseded",
+      "file": "versions/2025-revised.pdf",
+      "notes": ""
+    },
+    {
+      "key": "2025-original",
+      "label": "Original 2025 Constitution",
+      "date": "",
+      "status": "Superseded",
+      "file": "versions/2025-original.pdf",
+      "notes": ""
+    }
+  ],
+  "department": "Justice",
+  "authors": [],
+  "legacy_id": "",
+  "legacy_code": "",
+  "supersedes": [],
+  "superseded_by": [],
+  "related_documents": [
+    "AN-0001-RPS01",
+    "AN-0002-CAM01",
+    "AN-0003-PAS01"
+  ],
+  "notes": ""
 }

@@ -1,28 +1,34 @@
 {
-  "id": "POL-000",
+  "id": "LAW-000",
   "title": "Document title",
   "short_title": "Short title",
-  "category": "policies",
-  "type": "Policy",
+  "type": "Law",
   "status": "Current",
-  "version": "1.0",
-  "adopted": "2026-08-15",
+  "department": "",
+  "version": "",
+  "adopted": "",
   "effective": "",
   "ratified": "",
-  "last_updated": "2026-08-15",
+  "last_updated": "",
   "archive_added": "2026-08-15",
-  "authority": "Departmental Council",
-  "summary": "One short sentence describing this document.",
+  "authority": "",
+  "authors": [],
+  "summary": "",
   "pdf": "current.pdf",
-  "docx": "",
-  "related": [],
+  "legacy_id": "",
+  "legacy_code": "",
+  "supersedes": [],
+  "superseded_by": [],
+  "related_documents": [],
+  "notes": "",
   "versions": [
     {
+      "key": "previous",
       "label": "Previous version",
-      "date": "2026-07-01",
+      "date": "",
       "status": "Superseded",
       "file": "versions/previous.pdf",
-      "notes": "Optional change note"
+      "notes": ""
     }
   ]
 }

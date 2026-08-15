@@ -1,0 +1,30 @@
+{
+  "id": "AN-0004-NRDP01",
+  "title": "Newfriend & Resident Development Program",
+  "short_title": "Newfriend & Resident Development Program",
+  "type": "Law",
+  "status": "Legacy / Under Review",
+  "adopted": "2026-04-08",
+  "authors": [
+    "Snowclimb"
+  ],
+  "authority": "Central Council",
+  "summary": "Establishes a discretionary state programme supporting Newfriend and Resident onboarding, settlement, integration and public contribution.",
+  "legacy_id": "AN.0004",
+  "legacy_code": "NRDP01",
+  "related_documents": [
+    "AN-0001-RPS01",
+    "AN-0002-CAM01"
+  ],
+  "pdf": "current.pdf",
+  "department": "",
+  "version": "",
+  "effective": "",
+  "ratified": "",
+  "last_updated": "",
+  "archive_added": "2026-08-15",
+  "supersedes": [],
+  "superseded_by": [],
+  "notes": "",
+  "versions": []
+}
