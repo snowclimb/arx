@@ -1,0 +1,28 @@
+{
+  "id": "POL-000",
+  "title": "Document title",
+  "short_title": "Short title",
+  "category": "policies",
+  "type": "Policy",
+  "status": "Current",
+  "version": "1.0",
+  "adopted": "2026-08-15",
+  "effective": "",
+  "ratified": "",
+  "last_updated": "2026-08-15",
+  "archive_added": "2026-08-15",
+  "authority": "Departmental Council",
+  "summary": "One short sentence describing this document.",
+  "pdf": "current.pdf",
+  "docx": "",
+  "related": [],
+  "versions": [
+    {
+      "label": "Previous version",
+      "date": "2026-07-01",
+      "status": "Superseded",
+      "file": "versions/previous.pdf",
+      "notes": "Optional change note"
+    }
+  ]
+}
