@@ -1,0 +1,33 @@
+{
+  "id": "CCNP001",
+  "title": "Central Council Nomination Procedures",
+  "short_title": "Central Council Nomination Procedures",
+  "type": "Procedure",
+  "status": "Superseded",
+  "adopted": "2025-08-16",
+  "authors": [
+    "Aether Starborn"
+  ],
+  "authority": "Central Council",
+  "summary": "Historical nomination, campaigning, balanced approval voting and screening procedure for the former Central Council.",
+  "legacy_id": "AN.0013",
+  "legacy_code": "CCNP001",
+  "superseded_by": [
+    "CON-001"
+  ],
+  "pdf": "current.pdf",
+  "department": "",
+  "version": "",
+  "effective": "",
+  "ratified": "",
+  "last_updated": "",
+  "archive_added": "2026-08-15",
+  "supersedes": [],
+  "related_documents": [],
+  "notes": "",
+  "versions": [],
+  "slug": "ccnp001",
+  "aliases": [
+    "AN-0013-CCNP001"
+  ]
+}

@@ -1,0 +1,42 @@
+{
+  "id": "NDS01",
+  "title": "National Departments System",
+  "short_title": "National Departments System",
+  "type": "Law",
+  "status": "Legacy / Under Review",
+  "adopted": "2026-04-08",
+  "authors": [
+    "Snowclimb"
+  ],
+  "authority": "Central Council",
+  "summary": "Defines the national departments, their domains, departmental functions, leadership roles, managers, trainees and Trusted Citizen appointments.",
+  "legacy_id": "AN.0005",
+  "legacy_code": "NDS01",
+  "related_documents": [
+    "CON-001"
+  ],
+  "pdf": "current.pdf",
+  "department": "",
+  "version": "",
+  "effective": "",
+  "ratified": "",
+  "last_updated": "",
+  "archive_added": "2026-08-15",
+  "supersedes": [],
+  "superseded_by": [],
+  "notes": "",
+  "versions": [
+    {
+      "key": "2025-12",
+      "label": "December 2025 National Departments System",
+      "date": "2025-12-22",
+      "status": "Superseded",
+      "notes": "Earlier National Departments System.",
+      "file": "versions/2025-12.pdf"
+    }
+  ],
+  "slug": "nds01",
+  "aliases": [
+    "AN-0005-NDS01"
+  ]
+}

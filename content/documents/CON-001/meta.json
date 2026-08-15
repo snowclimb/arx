@@ -49,9 +49,11 @@
   "supersedes": [],
   "superseded_by": [],
   "related_documents": [
-    "AN-0001-RPS01",
-    "AN-0002-CAM01",
-    "AN-0003-PAS01"
+    "RPS01",
+    "CAM01",
+    "PAS01"
   ],
-  "notes": ""
+  "notes": "",
+  "slug": "con-001",
+  "aliases": []
 }

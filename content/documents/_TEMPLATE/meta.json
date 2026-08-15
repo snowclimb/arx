@@ -1,5 +1,5 @@
 {
-  "id": "LAW-000",
+  "id": "ABC01",
   "title": "Document title",
   "short_title": "Short title",
   "type": "Law",
@@ -30,5 +30,7 @@
       "file": "versions/previous.pdf",
       "notes": ""
     }
-  ]
+  ],
+  "slug": "abc01",
+  "aliases": []
 }

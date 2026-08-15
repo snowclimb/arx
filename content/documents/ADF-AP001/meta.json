@@ -1,0 +1,34 @@
+{
+  "id": "ADF-AP001",
+  "title": "Arresting Procedures for ADF Personnel",
+  "short_title": "ADF Arresting Procedures",
+  "type": "Procedure",
+  "status": "Legacy / Under Review",
+  "adopted": "2025-08-16",
+  "authors": [
+    "Aether Starborn"
+  ],
+  "authority": "Central Council",
+  "summary": "Defines identification, warning, evidence, pearling and probable-cause procedures for arrests by Arx Defense Force personnel.",
+  "legacy_id": "AN.0012",
+  "legacy_code": "ADF-AP001",
+  "related_documents": [
+    "PCA01",
+    "PAS01"
+  ],
+  "pdf": "current.pdf",
+  "department": "",
+  "version": "",
+  "effective": "",
+  "ratified": "",
+  "last_updated": "",
+  "archive_added": "2026-08-15",
+  "supersedes": [],
+  "superseded_by": [],
+  "notes": "",
+  "versions": [],
+  "slug": "adf-ap001",
+  "aliases": [
+    "AN-0012-ADF-AP001"
+  ]
+}

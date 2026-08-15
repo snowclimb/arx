@@ -1,0 +1,33 @@
+{
+  "id": "RSE01.1",
+  "title": "Reserve of State Exchanges",
+  "short_title": "Reserve of State Exchanges",
+  "type": "Law",
+  "status": "Legacy / Under Review",
+  "version": "RSE01.1",
+  "adopted": "2025-05-10",
+  "last_updated": "2025-06-07",
+  "authors": [
+    "Salizandar2"
+  ],
+  "authority": "Central Council",
+  "summary": "Reserves specified currency and ore exchanges to the state; the first revision extends the law to Arx government shops in other nations.",
+  "legacy_id": "AN.0003",
+  "legacy_code": "RSE01.1",
+  "related_documents": [
+    "ST01"
+  ],
+  "pdf": "current.pdf",
+  "department": "",
+  "effective": "",
+  "ratified": "",
+  "archive_added": "2026-08-15",
+  "supersedes": [],
+  "superseded_by": [],
+  "notes": "",
+  "versions": [],
+  "slug": "rse01-1",
+  "aliases": [
+    "AN-0003-RSE01"
+  ]
+}

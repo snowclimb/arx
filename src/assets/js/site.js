@@ -2,8 +2,41 @@
   const body = document.body;
   const base = body.dataset.base || './';
   const mobile = document.querySelector('[data-mobile-toggle]');
-  const nav = document.querySelector('.main-nav');
-  if (mobile && nav) mobile.addEventListener('click', () => nav.classList.toggle('open'));
+  const nav = document.querySelector('[data-main-nav]') || document.querySelector('.main-nav');
+  const headerActions = document.querySelector('[data-header-actions]');
+  const navDrops = [...document.querySelectorAll('[data-nav-drop]')];
+
+  function closeDrops(except = null) {
+    navDrops.forEach(drop => {
+      if (drop === except) return;
+      drop.classList.remove('is-open');
+      drop.querySelector('[data-nav-drop-button]')?.setAttribute('aria-expanded', 'false');
+    });
+  }
+
+  navDrops.forEach(drop => {
+    const button = drop.querySelector('[data-nav-drop-button]');
+    button?.addEventListener('click', e => {
+      e.preventDefault();
+      const opening = !drop.classList.contains('is-open');
+      closeDrops(drop);
+      drop.classList.toggle('is-open', opening);
+      button.setAttribute('aria-expanded', opening ? 'true' : 'false');
+    });
+  });
+
+  if (mobile && nav) mobile.addEventListener('click', () => {
+    const opening = !nav.classList.contains('open');
+    nav.classList.toggle('open', opening);
+    headerActions?.classList.toggle('open', opening);
+    mobile.setAttribute('aria-expanded', opening ? 'true' : 'false');
+    if (!opening) closeDrops();
+  });
+
+  document.addEventListener('click', e => {
+    if (!e.target.closest('[data-nav-drop]')) closeDrops();
+  });
+  window.addEventListener('keydown', e => { if (e.key === 'Escape') closeDrops(); });
 
   const input = document.querySelector('[data-global-search]');
   const results = document.querySelector('[data-search-results]');
@@ -89,7 +122,7 @@
     if (!query.trim()) { results.classList.remove('open'); results.innerHTML = ''; return; }
     results.classList.add('open');
     if (!matches.length) {
-      results.innerHTML = `<div class="search-empty">No archive pages matched “${escapeHtml(query)}”.<button class="search-all-link" type="button" data-search-all>Search anyway →</button></div>`;
+      results.innerHTML = `<div class="search-empty">No Arx pages matched “${escapeHtml(query)}”.<button class="search-all-link" type="button" data-search-all>Search anyway →</button></div>`;
       results.querySelector('[data-search-all]')?.addEventListener('click', () => goToSearch(query));
       return;
     }
@@ -128,12 +161,12 @@
         if (q) url.searchParams.set('q', q); else url.searchParams.delete('q');
         history.replaceState({}, '', url);
       }
-      if (!q) { summary.textContent = 'Enter a search term to find matching archive pages and documents.'; pageResults.innerHTML = ''; return; }
+      if (!q) { summary.textContent = 'Enter a search term to search pages, guides and archive documents.'; pageResults.innerHTML = ''; return; }
       summary.textContent = 'Searching…';
       const matches = scoredSearch(await loadIndex(), q);
       const terms = queryTerms(q);
       summary.innerHTML = `<strong>${matches.length}</strong> result${matches.length === 1 ? '' : 's'} for “${escapeHtml(q)}”`;
-      if (!matches.length) { pageResults.innerHTML = '<div class="search-page-empty">No pages or documents contained all of those search terms.</div>'; return; }
+      if (!matches.length) { pageResults.innerHTML = '<div class="search-page-empty">No pages, guides or documents contained all of those search terms.</div>'; return; }
       pageResults.innerHTML = matches.map(({item}) => {
         const label = item.id ? `${item.id} — ${item.title}` : item.title;
         const meta = [item.category, item.type, item.status].filter(Boolean).join(' · ');

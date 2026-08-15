@@ -1,0 +1,33 @@
+{
+  "id": "ST01",
+  "title": "State Treasury",
+  "short_title": "State Treasury",
+  "type": "Law",
+  "status": "Legacy / Under Review",
+  "adopted": "2025-05-10",
+  "authors": [
+    "Crofty"
+  ],
+  "authority": "Central Council",
+  "summary": "Establishes central handling of government income and spending, treasury reporting, exchanges, intergovernmental payments and bonds.",
+  "legacy_id": "AN.0005",
+  "legacy_code": "ST01",
+  "related_documents": [
+    "RSE01.1"
+  ],
+  "pdf": "current.pdf",
+  "department": "",
+  "version": "",
+  "effective": "",
+  "ratified": "",
+  "last_updated": "",
+  "archive_added": "2026-08-15",
+  "supersedes": [],
+  "superseded_by": [],
+  "notes": "",
+  "versions": [],
+  "slug": "st01",
+  "aliases": [
+    "AN-0005-ST01"
+  ]
+}

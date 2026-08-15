@@ -1,0 +1,31 @@
+{
+  "id": "ADG01",
+  "title": "Act Display Guideline",
+  "short_title": "Act Display Guideline",
+  "type": "Procedure",
+  "status": "Legacy / Under Review",
+  "adopted": "2025-06-07",
+  "authors": [
+    "Salizandar2"
+  ],
+  "authority": "Central Council",
+  "summary": "Defines major and minor document versioning and requires the latest bills to be held in a central repository with links for new players.",
+  "legacy_id": "AN.0008",
+  "legacy_code": "ADG01",
+  "pdf": "current.pdf",
+  "department": "",
+  "version": "",
+  "effective": "",
+  "ratified": "",
+  "last_updated": "",
+  "archive_added": "2026-08-15",
+  "supersedes": [],
+  "superseded_by": [],
+  "related_documents": [],
+  "notes": "",
+  "versions": [],
+  "slug": "adg01",
+  "aliases": [
+    "AN-0008-ADG01"
+  ]
+}
